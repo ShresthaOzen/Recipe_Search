@@ -3,6 +3,9 @@ import React, { useState } from 'react'
 const SearchBar = ({ onSearch }) => {
 
     const [query, setQuery] = useState('');
+    const [recipes, setRecipes] = useState([]);
+    const [loading, setLoading] = useState(false);
+
 
     function handleSubmit(e){
         e.preventDefault();
