@@ -1,0 +1,19 @@
+:root {
+  --color-primary: #C1502E;
+  --color-primary-dark: #A03818;
+  --color-secondary: #45664B;
+  --color-bg: #FCF9F8;
+  --color-card: #FFFFFF;
+  --color-text: #1B1C1C;
+  --color-text-muted: #57423C;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: 'Inter', sans-serif;
+}
+
+h1, h2, h3 {
+  font-family: 'Playfair Display', serif;
+}

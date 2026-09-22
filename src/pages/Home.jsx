@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import SearchBar from '../components/SearchBar'
 import axios from 'axios';
+import RecipeGrid from '../components/RecipeGrid';
 
 const Home = () => {
     const [recipes, setRecipes] = useState([]);
@@ -35,6 +36,7 @@ const Home = () => {
     <div>
       <h1>This is Home</h1>
       <SearchBar onSearch={handleSearch} />
+      <RecipeGrid recipes={recipes} />
     </div>
   )
 }
