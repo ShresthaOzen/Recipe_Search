@@ -1,14 +1,15 @@
 import React from 'react'
 import useFavourites from '../hooks/useFavourites'
 
-const RecipeCard = ({ recipe, favourites,addFavourite, isFavourite, removeFavourite }) => {
+const RecipeCard = ({ recipe, favourites, addFavourite, isFavourite, removeFavourite }) => {
 
-  function handleFavouriteClick(event){
+  function handleFavouriteClick(event) {
+    event.preventDefault();
     event.stopPropagation();
-    if (favourited){
+    if (favourited) {
       removeFavourite(recipe.idMeal)
     }
-    else{
+    else {
       addFavourite(recipe)
     }
   }
@@ -16,11 +17,16 @@ const RecipeCard = ({ recipe, favourites,addFavourite, isFavourite, removeFavour
   const favourited = isFavourite(recipe.idMeal)
   return (
     <div className='card'>
-        <img src= {recipe.strMealThumb} className='card-img-top' alt={recipe.strMeal} />
-        <div className='card-body'>
-            <h5 className='card-title'>{recipe.strMeal}</h5>
-        </div>
-        <span className="material-symbols-outlined" onClick={handleFavouriteClick}>favorite</span>
+      <img src={recipe.strMealThumb} className='card-img-top' alt={recipe.strMeal} />
+      <div className='card-body'>
+        <h5 className='card-title'>{recipe.strMeal}</h5>
+      </div>
+      <span
+        className={isFavourite(recipe.idMeal) ? "material-symbols-outlined text-danger" : "material-symbols-outlined"}
+        onClick={handleFavouriteClick}
+      >
+        favorite
+      </span>
     </div>
   )
 }
