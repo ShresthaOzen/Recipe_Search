@@ -3,7 +3,7 @@ import SearchBar from '../components/SearchBar'
 import axios from 'axios';
 import RecipeGrid from '../components/RecipeGrid';
 
-const Home = () => {
+const Home = ({addFavourite, isFavourite}) => {
     const [recipes, setRecipes] = useState([]);
     const [loading, setLoading] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
@@ -36,7 +36,7 @@ const Home = () => {
     <div>
       <h1>This is Home</h1>
       <SearchBar onSearch={handleSearch} />
-      <RecipeGrid recipes={recipes} />
+      <RecipeGrid recipes={recipes} addFavourite={addFavourite} isFavourite={isFavourite} />
     </div>
   )
 }

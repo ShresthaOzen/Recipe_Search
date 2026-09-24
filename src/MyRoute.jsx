@@ -4,12 +4,13 @@ import Favourites from './pages/Favourites'
 import { Route, Routes } from 'react-router-dom'
 import RecipeDetail from './pages/RecipeDetail'
 
-const MyRoute = () => {
+const MyRoute = ({favourites, addFavourite, isFavourite, removeFavourite}) => {
   return (
    <Routes>
-        <Route path='/' element={<Home />}/>
-        <Route path='/favourites' element={<Favourites />} />
-        <Route path='/recipe/:id' element={<RecipeDetail/>} />
+        <Route path="/" element={<Home addFavourite={addFavourite} isFavourite={isFavourite} />} />
+        <Route path='/favourites' element={<Favourites favourites={favourites} removeFavourite={removeFavourite} />} />
+        <Route path='/recipe/:id' element={<RecipeDetail addFavourite={addFavourite} removeFavourite={removeFavourite} isFavourite={isFavourite} />} />
+        
    </Routes>
   )
 }
