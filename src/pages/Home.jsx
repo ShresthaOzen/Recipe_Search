@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import SearchBar from '../components/SearchBar'
 import axios from 'axios';
 import RecipeGrid from '../components/RecipeGrid';
+import Hero from '../components/Hero';
 
 const Home = ({addFavourite, isFavourite}) => {
     const [recipes, setRecipes] = useState([]);
@@ -34,8 +35,7 @@ const Home = ({addFavourite, isFavourite}) => {
     
   return (
     <div>
-      <h1>This is Home</h1>
-      <SearchBar onSearch={handleSearch} />
+      <Hero onSearch={handleSearch}/>
       <RecipeGrid recipes={recipes} addFavourite={addFavourite} isFavourite={isFavourite} />
     </div>
   )
