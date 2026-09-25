@@ -7,7 +7,7 @@ import RecipeDetail from './pages/RecipeDetail'
 const MyRoute = ({favourites, addFavourite, isFavourite, removeFavourite}) => {
   return (
    <Routes>
-        <Route path="/" element={<Home addFavourite={addFavourite} isFavourite={isFavourite} />} />
+        <Route path="/" element={<Home addFavourite={addFavourite} isFavourite={isFavourite} favourites={favourites} />} />
         <Route path='/favourites' element={<Favourites favourites={favourites} removeFavourite={removeFavourite} isFavourite={isFavourite} addFavourite={addFavourite} />} />
         <Route path='/recipe/:id' element={<RecipeDetail addFavourite={addFavourite} removeFavourite={removeFavourite} isFavourite={isFavourite} />} />
         
