@@ -35,6 +35,7 @@ const Home = ({ addFavourite, isFavourite, favourites }) => {
         }
         else {
           let category = favourites[favourites.length - 1].strCategory;
+          console.log("last favourite object:", JSON.stringify(favourites[favourites.length - 1], null, 2));
           let response = await axios.get(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`);
           setSuggestRecipes(response.data.meals != null ? response.data.meals.slice(0, 8) : []);
         }
@@ -68,8 +69,6 @@ const Home = ({ addFavourite, isFavourite, favourites }) => {
 
 
   }
-  console.log("popularRecipes:", popularRecipes);
-  console.log("suggestRecipes:", suggestRecipes);
   return (
     <div>
       <Hero onSearch={handleSearch} />

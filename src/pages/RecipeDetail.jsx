@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { use, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
 const RecipeDetail = ({ addFavourite, removeFavourite, isFavourite }) => {
@@ -10,14 +10,19 @@ const RecipeDetail = ({ addFavourite, removeFavourite, isFavourite }) => {
         async function fetchRecipe() {
             let url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`
             let response = await axios.get(url);
-            setRecipe(response.data.meals != null ? response.data.meals[0] : [])
+            setRecipe(response.data.meals != null ? response.data.meals[0] : null)
         }
         fetchRecipe();
     }, [id]);
 
+    if (recipe === null) {
+        return <p>Loading......</p>;
+    }
+
+    const favourited = isFavourite(recipe.idMeal)
+
     function handleFavouriteClick() {
-        console.log("clicked");
-        if (isFavourite(recipe.idMeal)) {
+        if (favourited) {
             removeFavourite(recipe.idMeal)
         }
         else {
@@ -26,24 +31,28 @@ const RecipeDetail = ({ addFavourite, removeFavourite, isFavourite }) => {
     }
 
     return (
-        <>
-            {
-                recipe === null ? (<p>Loading......</p>) :
-                    (
-                        <div>
-                            <h2 className='recipe-title'>{recipe.strMeal}</h2>
-                            <span
-                                className={isFavourite(recipe.idMeal) ? "material-symbols-outlined text-danger" : "material-symbols-outlined"}
-                                onClick={handleFavouriteClick}
-                            >
-                                favorite
-                            </span>
-                            <img src={recipe.strMealThumb} alt={recipe.strMeal} className='recipe-img' />
-                            <p className='recipe-description'>{recipe.strInstructions}</p>
-                        </div>
-                    )
-            }
-        </>
+        <div className="recipe-detail">
+            <div className="recipe-detail-hero">
+                <img src={recipe.strMealThumb} alt={recipe.strMeal} className="recipe-detail-img" />
+                <div className="recipe-detail-overlay">
+                    <span className="recipe-card-badge">{recipe.strCategory}</span>
+                    <h2 className="recipe-detail-title">{recipe.strMeal}</h2>
+                </div>
+            </div>
+
+            <div className="recipe-detail-body">
+                <button
+                    className={favourited ? "recipe-detail-fav-btn favourited" : "recipe-detail-fav-btn"}
+                    onClick={handleFavouriteClick}
+                >
+                    <span className="material-symbols-outlined">favorite</span>
+                    {favourited ? "Saved to Favourites" : "Save Recipe"}
+                </button>
+
+                <h3>Instructions</h3>
+                <p className="recipe-detail-instructions">{recipe.strInstructions}</p>
+            </div>
+        </div>
     )
 }
 

@@ -16,17 +16,20 @@ const RecipeCard = ({ recipe, favourites, addFavourite, isFavourite, removeFavou
 
   const favourited = isFavourite(recipe.idMeal)
   return (
-    <div className='card'>
-      <img src={recipe.strMealThumb} className='card-img-top' alt={recipe.strMeal} />
-      <div className='card-body'>
-        <h5 className='card-title'>{recipe.strMeal}</h5>
+    <div className='recipe-card'>
+      <div className='recipe-card-img-wrapper'>
+        <img src={recipe.strMealThumb} className='recipe-card-img' alt={recipe.strMeal} />
+        <span className='recipe-card-badge'>{recipe.strCategory}</span>
+        <span
+          className={favourited ? "recipe-card-heart favourited" : "recipe-card-heart"}
+          onClick={handleFavouriteClick}
+        >
+          <span className="material-symbols-outlined">favorite</span>
+        </span>
       </div>
-      <span
-        className={isFavourite(recipe.idMeal) ? "material-symbols-outlined text-danger" : "material-symbols-outlined"}
-        onClick={handleFavouriteClick}
-      >
-        favorite
-      </span>
+      <div className='recipe-card-body'>
+        <h5 className='recipe-card-title'>{recipe.strMeal}</h5>
+      </div>
     </div>
   )
 }
