@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom'
 const RecipeDetail = ({ addFavourite, removeFavourite, isFavourite }) => {
     const { id } = useParams();
     const [recipe, setRecipe] = useState(null);
+    const [checkedIngredients, setcheckIngrendients] = useState([])
 
     useEffect(() => {
         async function fetchRecipe() {
@@ -30,6 +31,27 @@ const RecipeDetail = ({ addFavourite, removeFavourite, isFavourite }) => {
         }
     }
 
+    function getIngredients(recipe) {
+        const ingredients = [];
+        for (let i = 1; i <= 20; i++) {
+            const ingredient = recipe[`strIngredient${i}`];
+            const measure = recipe[`strMeasure${i}`];
+            if (ingredient && ingredient.trim() !== '') {
+                ingredients.push(`${measure} ${ingredient}`);
+            }
+        }
+        return ingredients;
+    }
+
+    function toggleIngredients(index) {
+        if (checkedIngredients.includes(index)) {
+            setcheckIngrendients(checkedIngredients.filter((i) => i !== index));
+
+        } else {
+            setcheckIngrendients([...checkedIngredients, index]);
+        }
+    }
+
     return (
         <div className="recipe-detail">
             <div className="recipe-detail-hero">
@@ -49,8 +71,30 @@ const RecipeDetail = ({ addFavourite, removeFavourite, isFavourite }) => {
                     {favourited ? "Saved to Favourites" : "Save Recipe"}
                 </button>
 
-                <h3>Instructions</h3>
-                <p className="recipe-detail-instructions">{recipe.strInstructions}</p>
+                <div className="recipe-detail-columns">
+                    <aside className="recipe-detail-ingredients-col">
+                        <h3>Ingredients</h3>
+                        <ul className="recipe-detail-ingredients">
+                            {getIngredients(recipe).map((item, index) => (
+                                <li key={index} className={checkedIngredients.includes(index) ? "checked" : ""}>
+                                    <label>
+                                        <input
+                                            type="checkbox"
+                                            checked={checkedIngredients.includes(index)}
+                                            onChange={() => toggleIngredients(index)}
+                                        />
+                                        {item}
+                                    </label>
+                                </li>
+                            ))}
+                        </ul>
+                    </aside>
+
+                    <div className="recipe-detail-instructions-col">
+                        <h3>Instructions</h3>
+                        <p className="recipe-detail-instructions">{recipe.strInstructions}</p>
+                    </div>
+                </div>
             </div>
         </div>
     )

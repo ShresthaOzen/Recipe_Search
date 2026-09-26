@@ -16,7 +16,7 @@ const Hero = ({onSearch}) => {
                     <button
                         key={term}
                         type='button'
-                        className='hero-pill'
+                        className='hero-pill '
                         onClick={()=> onSearch(term)}
                         >
                         {term}

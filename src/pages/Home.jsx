@@ -72,16 +72,54 @@ const Home = ({ addFavourite, isFavourite, favourites }) => {
   return (
     <div>
       <Hero onSearch={handleSearch} />
+
       <MetricsBar />
-      {recipes.length === 0 && !loading && <section className="popular-sections">
-        <h2>Popular recipes</h2>
-        <RecipeGrid recipes={popularRecipes} addFavourite={addFavourite} isFavourite={isFavourite} />
-      </section>}
-      {recipes.length === 0 && !loading && <section className="suggested-section">
-        <h2>You May Like</h2>
-        <RecipeGrid recipes={suggestRecipes} addFavourite={addFavourite} isFavourite={isFavourite} />
-      </section>}
-      <RecipeGrid recipes={recipes} addFavourite={addFavourite} isFavourite={isFavourite} />
+
+      {recipes.length === 0 && !loading && (
+        <section className="recipe-section popular-section">
+          <div className="section-heading">
+            <span className="section-eyebrow">WHAT'S TRENDING</span>
+
+            <h2>Popular Recipes</h2>
+
+            <p>
+              Discover the recipes everyone is loving right now.
+            </p>
+          </div>
+
+          <RecipeGrid
+            recipes={popularRecipes}
+            addFavourite={addFavourite}
+            isFavourite={isFavourite}
+          />
+        </section>
+      )}
+
+      {recipes.length === 0 && !loading && (
+        <section className="recipe-section suggested-section">
+          <div className="section-heading">
+            <span className="section-eyebrow">HANDPICKED FOR YOU</span>
+
+            <h2>You May Like</h2>
+
+            <p>
+              A few delicious ideas you might want to try next.
+            </p>
+          </div>
+
+          <RecipeGrid
+            recipes={suggestRecipes}
+            addFavourite={addFavourite}
+            isFavourite={isFavourite}
+          />
+        </section>
+      )}
+
+      <RecipeGrid
+        recipes={recipes}
+        addFavourite={addFavourite}
+        isFavourite={isFavourite}
+      />
     </div>
   )
 }

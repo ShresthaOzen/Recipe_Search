@@ -2,7 +2,7 @@
   --color-primary: #C1502E;
   --color-primary-dark: #A03818;
   --color-secondary: #45664B;
-  --color-bg: #FCF9F8;
+  --color-bg: #e9e9e9;
   --color-card: #FFFFFF;
   --color-text: #1B1C1C;
   --color-text-muted: #57423C;
@@ -64,10 +64,53 @@ h1, h2, h3 {
   color: white;
 }
 
+.recipe-search-input {
+    height: 46px;
+    border-radius: 999px;
+    padding: 0 20px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    transition: all 0.25s ease;
+}
+
+.recipe-search-input::placeholder {
+    color: #888;
+}
+
+.recipe-search-input:focus {
+    background: #fff;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.12);
+    outline: none;
+}
+
 .hero-heading-accent {
   font-style: italic;
   font-weight: 400;
   color: var(--color-primary);
+}
+
+.hero-search-btn {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: var(--color-primary);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 999px;
+    padding: 10px 24px;
+    font-weight: 600;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.hero-search-btn:hover {
+    background-color: white;
+    color: var(--color-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+}
+
+.hero-search-btn:active {
+    transform: translateY(0);
 }
 
 .hero-pills {
@@ -81,9 +124,11 @@ h1, h2, h3 {
 .hero-pill {
   padding: 0.4rem 1rem;
   border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.4);
   background: rgba(255,255,255,0.5);
-  color: brown;
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: white;
   font-size: 0.85rem;
   cursor: pointer;
 }
@@ -274,4 +319,139 @@ h1, h2, h3 {
   font-size: 48px;
   color: var(--color-primary);
   margin-bottom: 1rem;
+}
+
+.recipe-detail-ingredients {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem;
+}
+
+.recipe-detail-ingredients li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+.recipe-detail-columns {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+}
+
+.recipe-detail-ingredients-col {
+  background: var(--color-bg);
+  border-radius: 12px;
+  padding: 1.25rem;
+  align-self: start;
+}
+
+.recipe-detail-ingredients li label {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  cursor: pointer;
+}
+
+.recipe-detail-ingredients li.checked label {
+  text-decoration: line-through;
+  color: var(--color-text-muted);
+  opacity: 0.6;
+}
+
+.recipe-detail-ingredients input[type="checkbox"] {
+  accent-color: var(--color-primary);
+}
+
+@media (max-width: 768px) {
+  .recipe-detail-columns {
+    grid-template-columns: 1fr;
+  }
+}
+
+.recipe-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4.5rem 1.5rem;
+}
+
+/* Section heading */
+
+.section-heading {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.section-eyebrow {
+  display: inline-block;
+  color: var(--color-primary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.section-heading h2 {
+  margin: 0;
+  color: var(--color-text);
+  font-size: clamp(2rem, 4vw, 2.7rem);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.section-heading p {
+  max-width: 560px;
+  margin: 0.75rem auto 0;
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.popular-section {
+  padding-top: 2rem;
+  padding-bottom: 4.5rem;
+}
+
+.suggested-section {
+  position: relative;
+  padding-top: 4.5rem;
+  padding-bottom: 4.5rem;
+}
+
+.suggested-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 70px;
+  height: 3px;
+  transform: translateX(-50%);
+  background: var(--color-primary);
+  border-radius: 999px;
+}
+
+@media (max-width: 768px) {
+  .recipe-section {
+    padding: 3.5rem 1rem;
+  }
+
+  .popular-section {
+    padding-top: 1rem;
+  }
+
+  .suggested-section {
+    padding-top: 3.5rem;
+  }
+
+  .section-heading {
+    margin-bottom: 2rem;
+  }
+
+  .section-heading h2 {
+    font-size: 2rem;
+  }
+
+  .section-heading p {
+    font-size: 0.9rem;
+  }
 }
