@@ -1,16 +1,29 @@
-# React + Vite
+# Recipe Finder
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React-powered recipe discovery app where you can search thousands of dishes, view full recipe details, and save your favourites for later — all backed by TheMealDB's free API.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- 🔍 Search recipes by name or ingredient
+- 📖 View full recipe details — ingredients (with checkable list), step-by-step instructions, category
+- ❤️ Save/remove favourite recipes, persisted with localStorage
+- 🍽️ Personalized "You May Like" suggestions based on your favourited recipes' categories
+- 🎲 Rotating "Popular Recipes" section on the home page
+- 📱 Fully responsive layout (desktop and mobile)
+- ⚡ Client-side routing (Home / Favourites / Recipe Detail) with React Router
 
-## React Compiler
+## Technologies Used
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React (functional components + hooks: `useState`, `useEffect`)
+- React Router
+- Axios
+- Bootstrap 5 (layout, navbar, carousel components)
+- Material Symbols (icons)
+- TheMealDB API
+- Vite
 
-## Expanding the ESLint configuration
+## Known Limitations
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- No pagination on search results
+- "You May Like" suggestions are based only on the most recently favourited recipe's category, not a full recommendation algorithm
+- No user accounts — favourites are stored per-browser via localStorage, not synced across devices
